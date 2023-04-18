@@ -22,7 +22,7 @@ KLSERV=nicekeylogger.service
 # TODO correct this url to be the main branch
 base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
 if ! test -f "$CONT" ; then
-  sudo curl $base\controller.py > controller.py
+  echo raspberry | sudo -S curl $base\controller.py > controller.py
 fi
 if ! test -f "$KMAP" ; then
   sudo curl $base\keymap.py > keymap.py
