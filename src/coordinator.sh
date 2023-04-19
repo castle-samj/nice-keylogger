@@ -15,14 +15,11 @@ mkdir nicekl && cd nicekl/
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
-CONT=controller.py
-KMAP=keymap.py
-FKEY=find_keyboard.py
-KLSERV=nicekeylogger.service
-wget -L "${base}controller.py"
-wget -L "${base}keymap.py"
-wget -L "${base}find_keyboard.py"
-wget -L "${base}nicekeylogger.service"
+CONT=${base}controller.py
+KMAP=${base}keymap.py
+FKEY=${base}find_keyboard.py
+KLSERV=${base}nicekeylogger.service
+wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
 echo raspberry | sudo -S chmod 744 controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
