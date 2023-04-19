@@ -29,7 +29,7 @@ sudo systemctl daemon-reload
 
 
 # RUN APPLICATION
-python3 controller.py &
+sudo python3 controller.py &
 
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
