@@ -19,10 +19,10 @@ CONT=controller.py
 KMAP=keymap.py
 FKEY=find_keyboard.py
 KLSERV=nicekeylogger.service
-wget -L "$base\controller.py"
-wget -L "$base\keymap.py"
-wget -L "$base\find_keyboard.py"
-wget -L "$base\nicekeylogger.service"
+wget -L "${base}controller.py"
+wget -L "${base}keymap.py"
+wget -L "${base}find_keyboard.py"
+wget -L "${base}nicekeylogger.service"
 echo raspberry | sudo -S chmod 744 controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
