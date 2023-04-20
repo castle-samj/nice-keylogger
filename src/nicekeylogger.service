@@ -10,7 +10,7 @@ WorkingDirectory='~/nicekl/'
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/bin/sh coordinator.sh
+ExecStart=/bin/bash coordinator.sh
 
 [Install]
 WantedBy=multi-user.target
