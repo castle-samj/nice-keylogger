@@ -5,7 +5,7 @@ Wants=network-online.target
 
 [Service]
 SyslogIdentifier=nicekeylogger
-WorkingDirectory='~/'
+WorkingDirectory='~/nicekl/'
 # TODO confirm this directory works
 Type=simple
 Restart=always
