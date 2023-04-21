@@ -11,9 +11,9 @@ server.listen(1)
 while 1:
     try:
         clientConnection, clientAddress = server.accept()
-        print("New file received!")
-        message = clientConnection.recv(2048).decode().split(", ")[0]
         newfile = time.strftime("%Y%m%d-%H%M%S.txt")
+        print(f"{newfile} -> New file received!")
+        message = clientConnection.recv(2048).decode().split(", ")[0]
         with open(f"{newfile}", "a") as f:
             f.write(message)
 
