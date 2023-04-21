@@ -1,4 +1,5 @@
 import socket
+import sys
 import time
 
 server_port = 12001
@@ -8,10 +9,14 @@ server.bind(('', server_port))
 server.listen(1)
 
 while 1:
-    clientConnection, clientAddress = server.accept()
-    message = clientConnection.recv(2048).decode().split(", ")[0]
-    newfile = time.strftime("%Y%m%d-%H%M%S.txt")
-    with open(f"{newfile}", "a") as f:
-        f.write(message)
+    try:
+        clientConnection, clientAddress = server.accept()
+        print("New file received!")
+        message = clientConnection.recv(2048).decode().split(", ")[0]
+        newfile = time.strftime("%Y%m%d-%H%M%S.txt")
+        with open(f"{newfile}", "a") as f:
+            f.write(message)
 
-    clientConnection.close()
+        clientConnection.close()
+    except KeyboardInterrupt:
+        sys.exit("Thank you for hacking")
