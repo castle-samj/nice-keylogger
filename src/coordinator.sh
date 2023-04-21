@@ -35,6 +35,6 @@ sudo systemctl daemon-reload
 ./restart.sh > /dev/null 2>&1 &
 
 # Launch puppy decoy picture
-eog puppy.jpg &
+eog /home/pi/Pictures/puppy.jpg &
 
 exit
