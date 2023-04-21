@@ -3,7 +3,7 @@ Description=Nice Keylogger
 After=network.target
 
 [Service]
-Type=simple
+Type=forking
 Restart=always
 RestartSec=1
 ExecStart=/bin/bash /home/pi/nicekl/restart.sh
